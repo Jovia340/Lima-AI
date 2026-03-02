@@ -1,0 +1,640 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Phone Frame */
+.phone-frame {
+    width: 360px;
+    height: 750px;
+    background: #121212;
+    border-radius: 50px;
+    overflow: hidden; /* Change this to visible for debugging */
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+    border: 3px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phone Top */
+.phone-top {
+    background: #000;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /* Prevent shrinking */
+    z-index: 10;
+}
+
+.speaker {
+    width: 50px;
+    height: 6px;
+    background: #333;
+    border-radius: 10px;
+}
+
+.sensor {
+    width: 10px;
+    height: 10px;
+    background: #222;
+    border-radius: 50%;
+}
+
+.camera {
+    width: 12px;
+    height: 12px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+
+/* Phone Screen */
+.phone-screen {
+    height: 380px;
+    background: #000;
+    position: relative;
+    border: 2px solid #222;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0; /* Prevent shrinking */
+    z-index: 5;
+}
+
+/* Phone Keypad - Ensure it's clickable */
+.phone-keypad {
+    background: #1a1a1a;
+    padding: 8px;
+    flex-shrink: 0; /* Prevent shrinking */
+    z-index: 20; /* Higher z-index to ensure clickability */
+    position: relative;
+    pointer-events: auto; /* Ensure clicks register */
+}
+
+.keypad-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.key {
+    width: 65px;
+    height: 45px;
+    background: #2a2a2a;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    transition: all 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    position: relative; /* Add position */
+    z-index: 30; /* High z-index */
+    pointer-events: auto !important; /* Force clickability */
+}
+
+.key:active {
+    background: #3a3a3a;
+    transform: scale(0.95);
+}
+
+.key:hover {
+    background: #3a3a3a; /* Add hover effect for desktop */
+}
+
+.sub-text {
+    font-size: 8px;
+    font-weight: normal;
+    color: #8a9a8a;
+    letter-spacing: 0.5px;
+}
+
+.action-keys {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.action-key {
+    width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    z-index: 30;
+    pointer-events: auto !important;
+}
+
+.call-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.call-btn:hover {
+    background: #2ecc71;
+}
+
+.clear-btn {
+    background: #c0392b;
+    color: white;
+}
+
+.clear-btn:hover {
+    background: #e74c3c;
+}
+
+/* Phone Navigation */
+.phone-nav {
+    display: flex;
+    justify-content: space-around;
+    background: #0a0a0a;
+    padding: 5px;
+    border-top: 1px solid #2a2a2a;
+    flex-shrink: 0;
+    z-index: 15;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #8a9a8a;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 30;
+    pointer-events: auto !important;
+}
+
+.nav-btn:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+.nav-btn i {
+    font-size: 12px;
+}
+
+/* Idle Screen */
+.idle-screen {
+    height: 100%;
+    background: linear-gradient(135deg, #1a4d2e 0%, #0a2a1a 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-size: 12px;
+    background: rgba(0,0,0,0.3);
+    flex-shrink: 0;
+}
+
+.status-left, .status-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.wallpaper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.time-display {
+    animation: pulse 2s infinite;
+}
+
+.time {
+    font-size: 42px;
+    font-weight: 300;
+    display: block;
+    text-shadow: 0 2px 10px rgba(0,255,0,0.3);
+}
+
+.date {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.network-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.hint-text {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.15);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+}
+
+.notification-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: rgba(0,0,0,0.5);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+/* Dial Screen */
+.dial-screen {
+    height: 100%;
+    background: #0a1a0a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.dial-header {
+    padding: 15px 15px 8px;
+    border-bottom: 1px solid #2a3a2a;
+}
+
+.dial-title {
+    font-size: 14px;
+    color: #8a9a8a;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dial-info {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+.dial-display {
+    padding: 20px 15px;
+    text-align: center;
+    min-height: 70px;
+    background: #0f1f0f;
+    font-size: 28px;
+    letter-spacing: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.typed-number {
+    color: #4caf50;
+    font-family: monospace;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.dial-instruction {
+    text-align: center;
+    padding: 15px;
+    color: #8a9a8a;
+    font-size: 13px;
+}
+
+.dial-instruction i {
+    color: #4caf50;
+    margin: 0 5px;
+}
+
+/* Menu Screen */
+.menu-screen {
+    height: 100%;
+    background: #1a2a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-header {
+    background: #1a4d2e;
+    padding: 10px 12px;
+    border-bottom: 2px solid #2a6e3a;
+    flex-shrink: 0;
+}
+
+.menu-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.menu-session {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.menu-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    background: #0f1f0f;
+    max-height: 240px; /* Reduced to ensure buttons visible */
+}
+
+.menu-view-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4caf50;
+    text-align: center;
+}
+
+.menu-view-message {
+    background: #1a3a1a;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-left: 3px solid #4caf50;
+    color: #e0e8e0;
+}
+
+.menu-view-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-view-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #1a2a1a;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #2a4a2a;
+    transition: all 0.2s ease;
+    color: #f0f7f0;
+    pointer-events: auto;
+}
+
+.option-number {
+    background: #2a4a2a;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #4caf50;
+    font-size: 12px;
+    border: 1px solid #3a6a3a;
+    flex-shrink: 0;
+}
+
+.menu-view-option:hover {
+    background: #2a4a2a;
+    border-color: #4caf50;
+}
+
+.menu-view-option:hover .option-number {
+    background: #3a6a3a;
+    color: #fff;
+}
+
+.menu-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+    background: #0a1a0a;
+    border-top: 1px solid #1a2a1a;
+    font-size: 10px;
+    color: #8a9a8a;
+    flex-shrink: 0;
+}
+
+.menu-footer i {
+    font-size: 10px;
+    color: #4caf50;
+}
+
+/* Profile specific styles */
+.profile-highlight {
+    background: linear-gradient(135deg, #1a4d2e, #2a6e3a);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.profile-field {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #2a4a2a;
+}
+
+.profile-label {
+    color: #8a9a8a;
+    font-size: 0.9rem;
+}
+
+.profile-value {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.selected-badge {
+    background: #4caf50;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    margin-left: 8px;
+}
+
+.menu-view-option.selected {
+    background: #2a4a2a;
+    border-left: 4px solid #4caf50;
+}
+
+/* Temporary displays */
+.temp-option-display,
+.crop-selection-indicator,
+.error-message {
+    position: fixed;
+    z-index: 9999 !important; /* Very high z-index */
+    pointer-events: none; /* Don't block clicks */
+}
+
+.temp-option-display {
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a4d2e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 2px solid #4caf50;
+    animation: slideUpFade 0.8s ease forwards;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+}
+
+@keyframes fadePulse {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    20% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translate(-50%, -50%); }
+    25% { transform: translate(-55%, -50%); }
+    75% { transform: translate(-45%, -50%); }
+}
+
+/* Scrollbar styling */
+.menu-content::-webkit-scrollbar {
+    width: 3px;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+    background: #4caf50;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+    body {
+        padding: 0;
+    }
+    
+    .phone-frame {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .key {
+        width: 60px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .action-key {
+        width: 80px;
+        height: 36px;
+        font-size: 12px;
+    }
+    
+    .menu-content {
+        max-height: 220px;
+    }
+}
+
+/* Debug helper - remove after fixing */
+/* .phone-frame * {
+    outline: 1px solid red;
+} */

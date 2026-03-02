@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate-Smart Planting - USSD Farmer Interface</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="farmer.css">
+</head>
+<body>
+    <!-- Feature Phone Frame -->
+    <div class="phone-frame">
+        <!-- Phone Top with Speaker -->
+        <div class="phone-top">
+            <div class="speaker"></div>
+            <div class="sensor"></div>
+            <div class="camera"></div>
+        </div>
+
+        <!-- Phone Screen -->
+        <div class="phone-screen" id="phoneScreen">
+            <!-- Idle Screen (Default) -->
+            <div class="idle-screen" id="idleScreen">
+                <div class="status-bar">
+                    <div class="status-left">
+                        <span>MTN</span>
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <div class="status-right">
+                        <span>10:45 AM</span>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                </div>
+                
+                <div class="wallpaper">
+                    <div class="time-display">
+                        <span class="time">10:45</span>
+                        <span class="date">Tue, February 24</span>
+                    </div>
+                    <div class="network-info">
+                        <i class="fas fa-wifi"></i>
+                        <span>MTN Uganda</span>
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <div class="hint-text">
+                        <i class="fas fa-arrow-up"></i> Dial *6770#
+                    </div>
+                </div>
+
+                <div class="notification-bar">
+                    <span>No new messages</span>
+                    <span><i class="fas fa-lock"></i> Locked</span>
+                </div>
+            </div>
+
+            <!-- Dialing Screen (Shows when typing) -->
+            <div class="dial-screen hidden" id="dialScreen">
+                <div class="dial-header">
+                    <span class="dial-title">Enter USSD Code</span>
+                    <span class="dial-info">*6770#</span>
+                </div>
+                <div class="dial-display" id="dialDisplay">
+                    <span class="typed-number" id="typedNumber"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <div class="dial-instruction">
+                    Press call button <i class="fas fa-phone-alt"></i> to send
+                </div>
+            </div>
+
+            <!-- USSD Menu Screen (Appears after dialing) -->
+            <div class="menu-screen hidden" id="menuScreen">
+                <div class="menu-header">
+                    <div class="menu-title">Climate-Smart Planting</div>
+                    <div class="menu-session">USSD Session • *6770#</div>
+                </div>
+                
+                <div class="menu-content" id="menuContent">
+                    <!-- Dynamic menu content will be inserted here -->
+                </div>
+
+                <!-- Removed the menu input area since we use keypad directly -->
+                
+                <div class="menu-footer" id="menuFooter">
+                    <span><i class="fas fa-arrow-left"></i> 0 Back</span>
+                    <span><i class="fas fa-home"></i> Home</span>
+                    <span># Next <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone Keypad -->
+        <div class="phone-keypad">
+            <div class="keypad-row">
+                <button class="key" data-value="1">
+                    1
+                    <span class="sub-text"></span>
+                </button>
+                <button class="key" data-value="2">
+                    2
+                    <span class="sub-text">ABC</span>
+                </button>
+                <button class="key" data-value="3">
+                    3
+                    <span class="sub-text">DEF</span>
+                </button>
+            </div>
+            <div class="keypad-row">
+                <button class="key" data-value="4">
+                    4
+                    <span class="sub-text">GHI</span>
+                </button>
+                <button class="key" data-value="5">
+                    5
+                    <span class="sub-text">JKL</span>
+                </button>
+                <button class="key" data-value="6">
+                    6
+                    <span class="sub-text">MNO</span>
+                </button>
+            </div>
+            <div class="keypad-row">
+                <button class="key" data-value="7">
+                    7
+                    <span class="sub-text">PQRS</span>
+                </button>
+                <button class="key" data-value="8">
+                    8
+                    <span class="sub-text">TUV</span>
+                </button>
+                <button class="key" data-value="9">
+                    9
+                    <span class="sub-text">WXYZ</span>
+                </button>
+            </div>
+            <div class="keypad-row">
+                <button class="key" data-value="*">
+                    *
+                    <span class="sub-text"></span>
+                </button>
+                <button class="key" data-value="0">
+                    0
+                    <span class="sub-text"></span>
+                </button>
+                <button class="key" data-value="#">
+                    #
+                    <span class="sub-text"></span>
+                </button>
+            </div>
+            <div class="keypad-row action-keys">
+                <button class="action-key call-btn" id="callBtn">
+                    <i class="fas fa-phone-alt"></i> CALL
+                </button>
+                <button class="action-key clear-btn" id="clearBtn">
+                    <i class="fas fa-backspace"></i> CLEAR
+                </button>
+            </div>
+        </div>
+
+        <!-- Phone Navigation Buttons -->
+        <div class="phone-nav">
+            <button class="nav-btn" id="homeBtn">
+                <i class="fas fa-home"></i> Home
+            </button>
+            <button class="nav-btn" id="backBtn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <script src="farmer.js"></script>
+</body>
+</html>
